@@ -38,18 +38,3 @@ https://raw.githubusercontent.com/projectcalico/calico/v1.24.0./manifests/calico
 kubectl apply -f
 https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.49.0/deploy/static/provider/baremetal/deploy.yaml
 
-
-k8s—deploy:
-	stage: deploy
-	variables :
-		KUBECONFIG PATH: /home/ubuntu/.kube/config
-	before script:
-		- mkdir -p $(dirname "$KUBECONFIG_PATH")
-		- echo "$KUBECONFIG CONTENT" I base64 -d > "KUBECONFIG_PATH"
-		- export KUBECONFIG="$KUBECONFIG_PATH"
-	script :
-		— kubectl apply —f deployment—service.yaml
-	tags:
-		- self-hosted
-	only :
-		— main
